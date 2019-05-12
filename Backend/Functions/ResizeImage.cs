@@ -10,16 +10,16 @@ using System;
 using System.Linq;
 using Newtonsoft.Json;
 using Microsoft.Azure.Documents;
+using Microsoft.Extensions.Logging;
 
 namespace ContosoMaintenance.Functions
 {
-    public static class ResizeImage
+    public static class ProcessPhotosQueue
     {
         static readonly HttpClient httpClient = new HttpClient();
 
         [FunctionName("ProcessPhotosQueue")]
-        public static async Task Run(
-            // Trigger
+        public static async Task Run( // Trigger
             [QueueTrigger("processphotos")] PhotoProcess queueItem,
 
             // Inputs
@@ -30,15 +30,15 @@ namespace ContosoMaintenance.Functions
             [Blob("images-medium/{blobName}", FileAccess.Write)] Stream imageMedium,
             [Blob("images-icon/{blobName}", FileAccess.Write)] Stream imageIcon,
 
-            // Logger
-            TraceWriter log)
+            ILogger log)
+
         {
-            log.Info($"New photo upload '{queueItem.PhotoId}' detected for job '{job.Id}'");
+            log.LogInformation($"C# Queue trigger function processed: {queueItem}");
 
             // Crop photos to medium and icon sizes using Microsoft Cognitive Services
             await CropImageSmartAsync(imageLarge, imageMedium, 300, 300);
             await CropImageSmartAsync(imageLarge, imageIcon, 150, 150);
-            log.Info("Images cropped");
+            log.LogInformation("Images cropped");
 
             // Update Cosmos DB entry
             var photo = job.Photos.FirstOrDefault(p => p.Id.Equals(queueItem.PhotoId));
@@ -46,11 +46,11 @@ namespace ContosoMaintenance.Functions
             {
                 photo.MediumUrl = photo.LargeUrl?.Replace("large", "medium");
                 photo.IconUrl = photo.LargeUrl?.Replace("large", "icon");
-                log.Info("Cosmos DB entry updated");
+                log.LogInformation("Cosmos DB entry updated");
             }
         }
 
-        /// <summary>
+    /// <summary>
         /// Crops an image to a specific size using Microsoft Cognitive Services
         /// </summary>
         /// <returns>The image smart async.</returns>

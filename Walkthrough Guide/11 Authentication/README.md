@@ -10,7 +10,7 @@ Adding Authentication to our app and backend is a little outside of the scope of
 
 #### Why Azure Active Directory B2C
 
-For our business driven application, Azure Active Directory B2C (short: Azure ADB2C) is a perfect match because of the following reasons:
+For our business driven application, Azure Active Directory B2C (short: Azure ADB2C :speak_no_evil:) is a perfect match because of the following reasons:
 
 - Super simple or super custom authentication flow
 - Supports open standards to integrate with all technology stacks
@@ -55,13 +55,15 @@ Fill in the required information and hit **Create**.
 
 When we navigate to the B2C Tenant that we have just created, we will not see many details or configuration options. This is simply because it lives in its own Directory within Microsoft Azure. So we need to switch directories. For this, either click the ***Azure AD B2C Settings*** button or switch directories by clicking on your account in the top-right corner.
 
+In your new directory navigate to Azure AD B2C (either through All services or the search bar at the top of the page)
+
 ![Switch Azure Directory](Assets/SwitchAzureDirectory.png)
 
 ### 2.1 Add a new Sign-up or sign-in policy
 
 Enabling users to log into our Active Directory or to create an Account in there by themselves is a good start. For this, we need a *Policy*. In Active Directory, Policies define how users can log in, which Authentication Providers (like Facebook) they can use and what important information is, that users have to provide.
 
-To add a new Policy, click on ***Sign-up or sign-in policies*** in the side menu of the Azure AD B2C window and add a new Policy using the ***Add*** button at the top.
+To add a new Policy, click on ***User flows (policies)*** in the side menu of the Azure AD B2C window and add a new Policy using the ***New user flow*** button at the top.
 
 ![Add Policy](Assets/AddPolicy.png)
 
@@ -93,10 +95,9 @@ Create your first policy with the inputs below and confirm your selections with 
 
 - **Name:** GenericSignUpSignIn
 - **Identity providers:** Email signup
-- **Sign-up attributes:** Display Name
-- **Application claims:** Display Name, Email Addresses, Identity Provider, User's Object ID
 - **Multifactor authentication:** Off
-- **Page UI customization:** Default
+- **Collect attributes:** Display Name
+- **Return claims:** Display Name, Identity Provider and User's Object ID (email address is automatically added)
 
 ## 3. Setup the Active Directory Application
 
@@ -123,7 +124,7 @@ Fill in all the values and register the application with the ***Create*** button
 - **Name:** Contoso Maintenance
 - **Include Web App / Web API:** Yes
 - **Allow implicid flow:** Yes
-- **Reply URL:** `https://myawesomestartupapi.azurewebsites.net/api/login`
+- **Reply URL:** `https://myawesomestartupapi.azurewebsites.net/api/login` (use your own app url here)
 - **App ID URI:** `https://myawesomenewstartup.onmicrosoft.com/`**`backend`**
 - **Native client:** Yes
 - **Custom Redirect URI:** `msalcontosomaintenance://auth`
@@ -195,7 +196,7 @@ As you can see, we use `Configuration` variables one more time to not hard code 
 
 [View in project](/Backend/Monolithic/appsettings.json#L30-L34)
 
-Add the following secrets to your application as described in the according Secrets sections for App Services or Kubernetes.
+Add the following secrets to your application as described in the according Secrets sections for App Services or Kubernetes. Remember, you need to switch back to the directory where your App Service or Kubernetes is.
 
 > **Hint:** Here you can find the [App Service Secrets](/Walkthrough%20Guide/03%20Web%20API/01%20App%20Service#use-secrets) and [ Kubernetes Secrets](/Walkthrough%20Guide/03%20Web%20API/02%20Kubernetes#use-secrets) sections.
 

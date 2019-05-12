@@ -30,10 +30,14 @@ To add Computer Vision to our solution, enter the [Azure Portal](https://portal.
 
 Choose the following settings and hit the ***Create*** button to start.
 
-- **ID:** myawesomenewstartupcognitivevision
-- **Location:** Same as your Web App(or close as Cognitive Services are not available in all Regions)
-- **Pricing tier:** F0
+- **App Name:** myawesomenewstartupcognitivevision
 - **Resouce Group:** Use existing
+- **OS:** Windows or Linux
+- **Hosting Plan:** Consumption Plan
+- **Location:** Same as your Web App(or close as Cognitive Services are not available in all Regions)
+- **Runtime Stack:** .NET
+- **Storage:** Use existing (same Storage Account as created for Blob Storage)
+- **Pricing tier:** F0
 
 Once the deployment is succeeded, you can navigate to the resource and access the API Key from the ***Keys*** section.
 
@@ -140,7 +144,6 @@ Of course, all these Trigger, Input and Output [Bindings](https://docs.microsoft
     "IsEncrypted": false,
     "Values": {
         "AzureWebJobsStorage": "<Storage Connection String>",
-        "AzureWebJobsDashboard": "<Storage Connection String>",
         "CosmosDb": "<CosmosDB Connection String>",
         "CognitiveServicesEndpoint": "<Cognitive Services Computer Vision Endpoint>",
         "CognitiveServicesKey": "<Cognitive Services Computer Vision API Key>"
@@ -156,10 +159,9 @@ For local tests, the Environment Variables can be set in this file, when uploadi
 
 Add the settings like the following - getting the values from the relevant sections of your previously created Azure resources.
 
-- **AzureWebJobsDashboard:** *Key 1 Connection String* from the Storage Account ***Access keys*** section (should be already set)
 - **AzureWebJobsStorage:** *Key 1 Connection String* from the Storage Account ***Access keys*** section (should be already set)
-- **CosmosDB:** *Primary Connection String* from the Cosmos DB ***Keys*** section
-- **CognitiveServicesEndpoint:** *Endpoint* from the Cognitive Service ***Overview*** section
+- **CosmosDb:** *Primary Connection String* from the Cosmos DB ***Keys*** section
+- **CognitiveServicesEndpoint:** *Endpoint* from the Cognitive Service ***Overview*** section. Add vision/v1.0 to the end of the url, to target the Cognitive Services vision API. *For example https://northeurope.api.cognitive.microsoft.com/vision/v1.0*
 - **CognitiveServicesKey:** *Key 1* from the Cognitive Service ***Keys*** section
 
 Scroll up and click ***Save*** to set the Environment Variables for the Function App.
@@ -180,7 +182,7 @@ The output should look like this and we should see the **Build succeeded** messa
 
 Again, building (compiling) the code generated two more folders for us: `/bin` and `/obj`. Here we can find executable files that we can upload to the cloud. As an Azure Function only constists of .NET code, no `dotnet publish` is needed for it. 
 
-Inside our `Functions` folder, we should now find a `bin/Debug/netstandard2.0` folder that contains our ready-to-run backend logic. Now you can simply right-click this `netstandard2.0` folder and select ***Deploy to Function App***.
+Inside our `Functions` folder, we should now find a `bin/Debug/netcoreapp2.1` folder that contains our ready-to-run backend logic. Now you can simply right-click this `netcoreapp2.1` folder and select ***Deploy to Function App***.
 
 ![Deploy an Azure Function in Visual Studio Code](Assets/VSCodeAzureFunctionDeploy.png)
 

@@ -96,7 +96,7 @@ As we can see, a `contosomaintenance` database has been created with an empty `j
 
 #### 1.4.2 Add a new document manually
 
-Time to add our first job manually! Let's click the ***New Document*** button in the `jobs` collection and add a JSON document like the following one in the editor to add a dummy job that points to the Microsoft headquarter in Redmond.
+Time to add our first job manually! Let's click the ***New Item*** button in the `jobs` collection items and add a JSON document like the following one in the editor to add a dummy job that points to the Microsoft headquarter in Redmond.
 
 ```json
 {
@@ -147,14 +147,14 @@ For that, head over to the [Azure Portal](https://portal.azure.com), click the *
 
 Choose the following settings and hit the Create button to start provisioning the Storage Account.
 
-- **ID:** myawesomestartupstorage
-- **Deployment model:** Resource manager
-- **Account kind:** Storage (general purpose v1)
-- **Performance:** Standard
-- **Replication:** Locally-redundant storage (LRS)
-- **Secure transfer required:** Disabled
 - **Resource Group:** Use existing
+
+- **Storage account name:** myawesomestartupstorage
 - **Location:** Same as your Web App
+- **Performance:** Standard
+- **Account kind:** Storage (general purpose v1)
+- **Replication:** Locally-redundant storage (LRS)
+- **Access tier(default):** Hot
 
 ### 2.2 Explore Azure Blob Storage
 
@@ -178,7 +178,7 @@ We can upgrade and configure our Storage Account to use Solid State Disks (Premi
 
 #### 2.3.1 Create Blob containers for photos
 
-Before we connect the dots between the Web API backend and the Storage Account, we should create **Containers** for storing the uploaded photos at. Navigate to the ***Browse blobs*** section in the menu on the left and create a new container using the ***Add Container*** button.
+Before we connect the dots between the Web API backend and the Storage Account, we should create **Containers** for storing the uploaded photos at. Navigate to the ***Blobs*** section in the menu on the left (under Blob service) and create a new container using the ***+ Container*** button.
 
 ![Add a Blob Storage Container](Assets/AddBlobContainer.png)
 

@@ -28,9 +28,11 @@ By the end of the day, someone has to pay for all these services, that we are pr
 
 We have learned about the concept of Resource Groups earlier in this module. During the creation process of every Azure Resource, we can select a Resource Group, to assign it to.
 
-#### OS
+#### Publish
 
 App Services, can be based on Windows, Linux or Docker as their core technology. This becomes important, when taking a look at the programming framework, that we are using for the application's logic itself. While .NET Framework for example only runs on Windows, Node.js is more performant on a Linux host. If we want to provide a Docker container instead of deploying our application directly to the App Service, we can do that as well.
+
+**The sample app is built with .NET Core 2.1**
 
 > **Hint:** At this workshop, the Backend API Logic is written with .NET Core, which runs cross-platform. So you can choose both, Windows and Linux. We also provide it as a Docker image, so you can also choose Docker as the operation system of your App Service. Just choose, whatever you are most interested in!
 
@@ -64,7 +66,7 @@ After you configured everything, the App Service Plan configuration should now l
 
 - **App name:** `myawesomestartupapi` (or similar)
 - **Resource group:** *choose the one you created earlier*
-- **OS:** Windows, Linus or Docker
+- **Publish:** Windows, Linus or Docker
 - **App Service plan/Location:** *choose the one you created earlier*
 - **Application Insights:** On
 - **Application Insights Location:** *choose the closest one*
@@ -79,9 +81,25 @@ Because my app name was: "myawesomestartupapi", the unique URL would be: `https:
 
 Azure App Service has many options for how to deploy our code. These include continuous integration, which can link to Visual Studio Team Services or GitHub. We could also use FTP to upload the project, but we're not animals, so we won't.
 
+### Deploying your website
+
+Before we move to the Web API, we'll deploy our website from Visual Studio Code.
+
+Open the workshop files in Visual Studio Code and navigate to */Website/*. Right-click on the Website folder and select "Open in Terminal".
+
+Now we'll build a release package of our website from the ASP.NET Core website (that's been written for us). So in termianl run `dotnet publish -c Release -o ./publish`
+
+Now right-click on the newly created publish folder and select "Deploy to Web App...". Select your subscription and the newly created Web App. Once the app has deployed you'll get a notification from VS Code and you can browse the site.
+
+*You'll notice that if you navigate to the Jobs-page, you'll get a empty list. That's because we don't have a database or any data setup yet*
+
+#### Deploying the Web API
+
 The good news is: The full ASP.NET Core WebAPI code for the backend logic is already written for us and is located in the `Backend/Monolithic` folder of the workshop. But before we can upload it to the cloud, we need to **compile** it.
 
 We can also create a Docker image for it or use the pre-built images, that can find on Docker Hub. Just as we discussed in the [previous module](../)!
+
+First, lets create a new "Api App" on the Azure Portal. So head over to the portal and provision a new resource under the same subscription, resource group and app service plan.
 
 <details><summary>Build and deploy a code package</summary><p>
 
@@ -145,11 +163,16 @@ Throughout the workshop we will create more and more services and need to connec
 
 For Azure App Services, those secrets are placed securely and encrypted in the **Application Settings**.
 
-![Add App Service App Settings](Assets/AddAppServiceAppSettings.png)
+> Note: You'll get the Cosmos DB Endpoint and Access Key, in the next section, when we create the resource.
+
+![Add App Service App Settings](Assets/addSecretsToAppService.png)
 
 Navigate to the Web API App Service in the Azure Portal and open the ***Application settings*** from the menu on the left. Scroll down to the ***Application settings*** section and you will see a table where we can add settings to.
 
 Add the settings in the format `Settings__Key` (two underscores) and take the values from the ***Keys*** section of your services. Hit ***Save*** at the top of the page once you are set.
+
+### Connect your public website to the new API App
+Add a new setting called *BaseUrl* in the Application Settings of the Web App and set the value as the url of your API App, for example *https://myapp.azurewebsites.net/api/*
 
 ## Additional Resouces
 

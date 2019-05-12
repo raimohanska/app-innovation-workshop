@@ -52,7 +52,7 @@ namespace ContosoFieldService.Droid
             AndroidAppLinks.Init(this);
 
             // Configure Authentication
-            AuthenticationService.UIParent = new UIParent(this);
+            AuthenticationService.UIParent = new UIParent(Xamarin.Forms.Forms.Context as Activity);
 
             LoadApplication(new App());
         }
