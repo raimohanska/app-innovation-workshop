@@ -46,9 +46,7 @@ You don't want to work with Docker containers? Fine, but then you have to compil
 
 You want to work with containers? Great! You can work with the ones we have prepared for you. You will find them on DockerHub:
 
-- [`robinmanuelthiel/contosomaintenance-api`](https://cloud.docker.com/u/robinmanuelthiel/repository/docker/robinmanuelthiel/contosomaintenance-api)
-- [`robinmanuelthiel/contosomaintenance-bot`](https://cloud.docker.com/u/robinmanuelthiel/repository/docker/robinmanuelthiel/contosomaintenance-bot)
-- [`robinmanuelthiel/contosomaintenance-functions`](https://cloud.docker.com/u/robinmanuelthiel/repository/docker/robinmanuelthiel/contosomaintenance-functions)
+- [`robinmanuelthiel/contosomaintenance-bot`](https://cloud.docker.com/u/drazend/repository/docker/drazend/appinnovation-api)
 
 In a real-world scenario, you would probably use your own private Container Registry instead of Docker Hub and build the containers on your own. In Azure you can create you own Container Registry within a few steps. Just open the block below to get some detailed instructions on how to create such a registry, build Docker images on your own and push these to the cloud.
 
