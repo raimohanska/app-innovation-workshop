@@ -24,6 +24,13 @@ As we're not going to implement Authentication in today's workshop, we decided t
 ### Data Storage 
 We've opted for a NoSQL approach using CosmosDB. Our reasoning for this is based on a few reasons. An important part is the geo-replication features of CosmosDB make it a natural choice for new projects, but secondly, our deadline meant we didn't have time to spend migrating database for small model changes (something we did a lot in the beginning). 
 
+#### Additional guidance on designing web applications
+:arrow_right: [Improve scalability in an Azure web application](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/app-service-web-app/scalable-web-app)
+
+:arrow_right: [Run a web application in multiple Azure regions for high availability](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/app-service-web-app/multi-region)
+
+:arrow_right: [Web application monitoring on Azure](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/app-service-web-app/app-monitoring)
+
 ---
 
 ## Azure Functions
@@ -37,15 +44,22 @@ The most significant difference is how we scale. With Azure Functions, we do not
 
 We will be developing a version of the backend that is entirely Azure Functions based on the future. 
 
+**Read more about**
+
+:arrow_right:[Serverless web application on Azure](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/serverless/web-app)
+
+:arrow_right: [Event Processing using Microsoft Azure](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/serverless/event-processing)
+
 ---
-## Micro-Services
+## Microservices
 ![Azure Functions Architecture](Assets/MicroServices.png)
+In this workshop we won't be focusing on Microservices but you can read more about the architecture options below.
 
-Mr Michael Sivers is currently investigating adding a Micro-Services architecture as a branch. 
+**Read more:**
 
-If you're interested in helping, then please reach out to us! 
+:arrow_right: [Microservices architecture on Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/microservices/aks)
 
-Learn more about [Service Fabric](https://azure.microsoft.com/en-us/services/service-fabric/)
+:arrow_right: [Microservices architecture on Azure Service Fabric](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/microservices/service-fabric)
 
 ## Connecting to remote resources securely
 ExpressRoute is an Azure service that lets you create private connections between Microsoft datacenters and infrastructure that’s on your premises or in a colocation facility. ExpressRoute connections do not go over the public Internet, instead ExpressRoute uses dedicated connectivity from your resources to Azure. This provides reliability and speeds guarantees with lower latencies than typical connections over the Internet. Microsoft Azure ExpressRoute lets you extend your on-premises networks into the Microsoft cloud over a private connection facilitated by a connectivity provider. Connectivity can be from an any-to-any (IP VPN) network, a point-to-point Ethernet network, or a virtual cross-connection through a connectivity provider at a co-location facility.

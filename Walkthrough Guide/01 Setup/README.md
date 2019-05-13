@@ -105,3 +105,6 @@ If you want to build iOS solutions, make sure that XCode is also installed on th
 To make sure your environment works as expected and is able to compile and execute Xamarin apps, your can simply open the [`ContosoMaintenance.sln`](/ContosoMaintenance.sln) solution with Visual Studio and select the `ContosoFieldService.iOS` or `ContosoFieldService.Droid` project as your Startup project. If the application gets compiled and the app can be started, you are good to go.
 
 ![Visual Studio Running Xamarin iOS and Android App](Assets/VSMacRunningiOSandAndroid.png)
+
+# Next Steps 
+[Architecture Options](../02%20Architecture%20Options/README.md)

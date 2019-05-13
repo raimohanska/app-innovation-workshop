@@ -12,6 +12,9 @@ using Microsoft.AppCenter.Push;
 using Microsoft.Identity.Client;
 using Xamarin;
 using Xamarin.Forms.Platform.Android.AppLinks;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace ContosoFieldService.Droid
 {
