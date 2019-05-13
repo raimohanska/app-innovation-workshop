@@ -180,9 +180,9 @@ The output should look like this and we should see the **Build succeeded** messa
 
 ![Build an Azure Function in Visual Studio Code](Assets/VSCodeAzureFunctionBuild.png)
 
-Again, building (compiling) the code generated two more folders for us: `/bin` and `/obj`. Here we can find executable files that we can upload to the cloud. As an Azure Function only constists of .NET code, no `dotnet publish` is needed for it. 
+Again, building (compiling) the code generated two more folders for us: `/bin` and `/obj`. Then run `dotnet publish -c Release -o ./publish` to create a publish we can publish to the cloud.
 
-Inside our `Functions` folder, we should now find a `bin/Debug/netcoreapp2.1` folder that contains our ready-to-run backend logic. Now you can simply right-click this `netcoreapp2.1` folder and select ***Deploy to Function App***.
+Inside our `Functions` folder, we should now find a `publish` folder that contains our ready-to-run backend logic. Now you can simply right-click this folder and select ***Deploy to Function App***.
 
 ![Deploy an Azure Function in Visual Studio Code](Assets/VSCodeAzureFunctionDeploy.png)
 
