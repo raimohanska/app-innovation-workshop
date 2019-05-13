@@ -7,5 +7,7 @@
         "contosomaintenance",
         "performant",
         "robinmanuelthiel"
-    ]
+    ],
+    "appService.deploySubpath": "Backend/Monolithic/bin/Debug/netcoreapp2.1/publish",
+    "appService.defaultWebAppToDeploy": ""
 }
